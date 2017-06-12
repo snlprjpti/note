@@ -1,2 +1,2 @@
-  <span class="btn-info">{{ $users->count() }}
+sfdfsfdfsdfd <span class="btn-info">{{ $users->count() }}
       </span>
