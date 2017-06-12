@@ -1,27 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\admin;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use App\Faculty;
-use App\Http\Requests\FacultyRequest;
-use App\Repository\FacultyRepository;
-use Session;
 
-class FacultyController extends Controller
+class SemesterController extends Controller
 {
-   private $facultyRepository;
-
-   public function __construct(FacultyRepository $facultyRepository)
-   {
-        $this->facultyRepository = $facultyRepository;
-   }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $faculties= Faculty::all();
-        $user = \Auth::user()->pluck('name','id');
-        return view('admin.faculty.index', compact('faculties','user'));
+        //
     }
 
     /**
@@ -31,7 +23,7 @@ class FacultyController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -40,12 +32,9 @@ class FacultyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FacultyRequest $request)
+    public function store(Request $request)
     {
-        $faculties = $request->all();
-        $faculties = $this->facultyRepository->store($faculties);
-        Session::flash('success','Faculty Saved Successfully'); 
-        return redirect()->route('faculty.index');
+        //
     }
 
     /**
@@ -56,10 +45,7 @@ class FacultyController extends Controller
      */
     public function show($id)
     {
-        $semesters = Faculty::find($id)->semesters;
-        $user = \Auth::user()->pluck('name','id');
-        $faculties = Faculty::all();
-        return view('admin.faculty.index', compact('faculties','subjects','user'));
+        //
     }
 
     /**

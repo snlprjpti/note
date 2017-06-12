@@ -36,13 +36,14 @@
         <li><a href="{{route('member.index')}}"><i class="fa fa-child"></i> <span>Member</span></a></li>
         @endif
        
-          <li class="active"><a href="{{route('note.index')}}"><i class="fa fa-edit text-red"></i> <span>Notes</span></a></li>
+          <li><a href="{{route('note.index')}}"><i class="fa fa-edit text-red"></i> <span>Notes</span></a></li>
 
           
         <li><a href="{{route('subject.index')}}"><i class="fa fa-laptop "></i> <span>Subject</span></a></li>
+        <li><a href="{{route('semester.index')}}"><i class="fa fa-laptop "></i> <span>Semester</span></a></li>
         <li><a href="{{route('faculty.index')}}"><i class="fa fa-laptop "></i> <span>faculty</span></a></li>
 
-         <li class="treeview">
+      <!--    <li class="treeview">
           <a href="#"><i class="fa fa-files-o text-green"></i> <span>News</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -77,7 +78,7 @@
             <li><a href="#"><i class="fa fa-circle-o text-blue"></i>Daily</a></li>
             <li><a href="#"><i class="fa fa-circle-o text-blue"></i>Weekly</a></li>
             <li><a href="#"><i class="fa fa-circle-o text-blue"></i>Monthly</a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-blue"></i>Yearly</a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-blue"></i>Yearly</a></li> -->
       </ul>
       <!-- /.sidebar-menu -->
     </section>

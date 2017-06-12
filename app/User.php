@@ -4,6 +4,7 @@ namespace App;
 use App\Note;
 use App\Subject;
 use App\Faculty;
+use App\Semester;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -48,5 +49,10 @@ class User extends Authenticatable
     public function faculty()
     {
         return $this->hasMany(Faculty::class);
+    }
+
+    public function semester()
+    {
+        return $this->hasMany(Semester::class);
     }
 }

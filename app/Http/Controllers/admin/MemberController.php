@@ -23,10 +23,12 @@ class MemberController extends Controller
     	$members = $this->memberRepository->all();
     	return view('admin.member.index', compact('members'));
     }
+    
     public function create()
     {
         return view('admin.member.create');
     }
+
     public function store(Request $request)
     {
         $members = $request->all();

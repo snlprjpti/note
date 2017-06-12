@@ -16,6 +16,7 @@ Route::group(['prefix' => 'admin','middleware'=> ['auth','checkuser','web']], fu
 	Route::resource('note','admin\NotesController');
 	Route::post('note/delete', 'admin\NotesController@delete')->name('note.delete');
 	Route::resource('subject','admin\SubjectController');
+	Route::resource('semester','admin\SemesterController');
 	Route::resource('faculty', 'admin\FacultyController');
 	
 

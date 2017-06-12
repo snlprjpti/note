@@ -1,21 +1,24 @@
 @extends('admin.layout.main')
 @section('content')
 <h4>Faculty</h4>
- 		<a href="#modal-id" class="btn btn-primary" data-toggle="modal">Add Faculty</a>
-<div class="navbar">
+ 	
+ 	<a href="#modal-id" class="btn btn-primary" data-toggle="modal">Add Faculty</a>
+	@include('admin.session.messages')
+
+	<div class="navbar">
 	   <ul class="nav navbar-nav">
   		@if(!empty($faculties))
 	   		@forelse($faculties as $faculty)
 	   		<li>
-	   		<a href="{{route('faculty.show',$faculty->id)}}">{{$faculty->name}}</a>
+	   			<a href="{{route('faculty.show',$faculty->id)}}">{{$faculty->name}}</a>
 	   		</li>
-	   			@empty
+	   		@empty
 	   			<li>No Data</li>
 	   		@endforelse
    		@endif    
       </a>
     </ul>
- 
+ 	
     	<div class="modal fade" tabindex="-1" id="modal-id" role="dialog">
 		  <div class="modal-dialog" role="document">
 		  {!!Form::open(['route' => 'faculty.store', 'method' => 'post'])!!}
@@ -27,7 +30,7 @@
 		      </div>
 		      <div class="modal-body">
 		       	<div class="form-group">
-		       		{{ Form::label('name','Name')}}
+		       		{{ Form::label('name','Faculty Name')}}
 		       		{{ Form::text('name', null, array('class' => 'form-control'))}}
 		       	</div> 	
 		       	<div class="form-group">
@@ -44,7 +47,7 @@
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 	</div> 
-	@if(!empty($subjects))
+	@if(!empty($semesters))
 	<section>
 		<h3>Subjects</h3>
 		<table class="table table-stripped">
@@ -56,9 +59,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				@forelse($subjects as $subject)
+				@forelse($semesters as $semester)
 				<tr>
-					<td>{{$subject->name}}</td>
+					<td>{{$semester->name}}</td>
 					<td>{{}}</td>
 				</tr>
 				@empty

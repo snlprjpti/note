@@ -2,22 +2,22 @@
 
 namespace App;
 use App\Note;
-use App\Faculty;
+use App\Semester
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
- 	protected $fillable = ['name','faculty_id','user_id','note_id'];
+ 	protected $fillable = ['name','semester_id','user_id','note_id'];
 
  	public function notes()
  	{
  		return $this->hasMany(Note::class);
  	}
 
- 	public function faculty()
+ 	public function semester()
  	{
- 		return $this->belongsTo(Faculty::class);
+ 		return $this->belongsTo(Semester::class);
  	}
 
  	public function user()
