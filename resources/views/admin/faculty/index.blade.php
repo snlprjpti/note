@@ -47,9 +47,8 @@
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 	</div> 
-	@if(!empty($semesters))
 	<section>
-		<h3>Subjects</h3>
+		<h3>Semester</h3>
 		<table class="table table-stripped">
 			<thead>
 				<tr>
@@ -59,18 +58,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				@forelse($semesters as $semester)
-				<tr>
-					<td>{{$semester->name}}</td>
-					<td>{{}}</td>
-				</tr>
-				@empty
-				<tr><td>No Data</td></tr>
-				@endforelse
+				
 			</tbody>
 		</table>
 	</section>
-	@endif
 
 
 @endsection

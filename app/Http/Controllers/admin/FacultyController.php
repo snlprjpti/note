@@ -59,7 +59,7 @@ class FacultyController extends Controller
         $semesters = Faculty::find($id)->semesters;
         $user = \Auth::user()->pluck('name','id');
         $faculties = Faculty::all();
-        return view('admin.faculty.index', compact('faculties','subjects','user'));
+        return view('admin.faculty.index', compact('faculties','semesters','user'));
     }
 
     /**
