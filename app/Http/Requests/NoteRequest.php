@@ -25,8 +25,7 @@ class NoteRequest extends FormRequest
     {
         return [
              'name' => 'required',
-            'description' => 'required',
-            'file' => 'file|mimes:pdf,xls,xlsx,docx,doc|max:10000',
+             'file.*' => 'required|mimes:pdf,xls,xlsx,docx,doc|max:10000'
         ];
     }
 }

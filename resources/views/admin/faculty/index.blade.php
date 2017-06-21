@@ -1,67 +1,73 @@
 @extends('admin.layout.main')
+@section('title','Faculty')
+@section('breadcrumb')
+	<ol class="breadcrumb">
+        <li><a href="/admin"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Faculty</li>
+     </ol>
+@endsection
 @section('content')
-<h4>Faculty</h4>
- 	
- 	<a href="#modal-id" class="btn btn-primary" data-toggle="modal">Add Faculty</a>
-	@include('admin.session.messages')
 
-	<div class="navbar">
-	   <ul class="nav navbar-nav">
-  		@if(!empty($faculties))
-	   		@forelse($faculties as $faculty)
-	   		<li>
-	   			<a href="{{route('faculty.show',$faculty->id)}}">{{$faculty->name}}</a>
-	   		</li>
-	   		@empty
-	   			<li>No Data</li>
-	   		@endforelse
-   		@endif    
-      </a>
-    </ul>
- 	
-    	<div class="modal fade" tabindex="-1" id="modal-id" role="dialog">
-		  <div class="modal-dialog" role="document">
-		  {!!Form::open(['route' => 'faculty.store', 'method' => 'post'])!!}
-
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">Add Faculty</h4>
-		      </div>
-		      <div class="modal-body">
-		       	<div class="form-group">
-		       		{{ Form::label('name','Faculty Name')}}
-		       		{{ Form::text('name', null, array('class' => 'form-control'))}}
-		       	</div> 	
-		       	<div class="form-group">
-		       		{{ Form::label('user_id','Added By')}}
-		       		{{ Form::select('user_id',$user, null, array('class' => 'form-control'))}}
-		       	</div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="submit" class="btn btn-primary">Save changes</button>
-		      </div>
-		    </div><!-- /.modal-content -->
-		    {!!Form::close()!!}
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-	</div> 
-	<section>
-		<h3>Semester</h3>
-		<table class="table table-stripped">
-			<thead>
-				<tr>
-					<th>Subject</th>
-					<th>No. of Note</th>
-					<th>Added By</th>
-				</tr>
-			</thead>
-			<tbody>
-				
-			</tbody>
+<div class="row">
+	<div class="col-md-8 content-table">		
+		@if(Session::has('error'))
+			<div id="messages"  class="alert alert-danger" role="alert">
+				<strong>{{Session::get('error')}}</strong>
+			</div>
+		@endif
+		@if(Session::has('delete'))
+			<div  id="messages" class="alert alert-info" role="alert">
+				<strong>{{Session::get('delete')}}</strong>
+			</div>
+		@endif
+		
+		<table class="table table-responsive" id="datatable">
+			<tr>
+				<thead>
+					<td>SN</td>
+					<td>Faculty Name</td>
+					<td>FullForm</td>
+					<td>Added By</td>
+					<td>Action</td>
+					<td></td>
+				</thead>
+			</tr>
+			<?php $i = 1;?>
+			@forelse($faculties as $faculty)
+				<tbody>
+					<td>{{$i}}</td>
+					<td>{{$faculty->name}}</td>
+					<td>{{$faculty->fullname}}</td>
+					<td>{{$faculty->user->name}}</td>
+					<td><a href="{{route('faculty.edit',['id' => $faculty->id])}}" class="btn-lg"><i class="fa fa-edit"></i></a></td>
+						<td><form action="{{route('faculty.destroy',$faculty->id)}}" method="post">
+							<button type="submit" class="btn-danger"><i class="fa fa-trash"></i></button>
+							{{csrf_field()}}
+							{{method_field('DELETE')}}
+						</form>
+					</td>
+				</tbody>
+			<?php $i++ ?>
+			@empty<h2>No Faculty Available</h2>
+			@endforelse
 		</table>
-	</section>
 
+	</div>
+	@if(\Request::segment(4) == 'edit')
+		@include('admin.faculty.edit')
+	@else
+		@include('admin.faculty.create')
+	@endif
+</div>
+		
+@endsection
 
+@section('js')
+		<script type="text/javascript">
+	
+	        $(document).ready(function() {
+			    $('#datatable').DataTable();
+			});
+		
+	</script>
 @endsection

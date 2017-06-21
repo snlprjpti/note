@@ -1,4 +1,4 @@
-@extends('main')
+@extends('front.main')
 @section('content')
          <div class="col-md-9">
             <h1>NOTES</h1>

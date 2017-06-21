@@ -36,7 +36,7 @@ class User extends Authenticatable
         return $this->admin;
     }
 
-    public function note()
+    public function notes()
     {
         return $this->hasMany(Note::class);
     }
@@ -49,10 +49,5 @@ class User extends Authenticatable
     public function faculty()
     {
         return $this->hasMany(Faculty::class);
-    }
-
-    public function semester()
-    {
-        return $this->hasMany(Semester::class);
     }
 }

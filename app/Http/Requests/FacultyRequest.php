@@ -25,6 +25,7 @@ class FacultyRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:faculties,name',
+            'fullname' => 'required|unique:faculties,fullname',
         ];
     }
 }

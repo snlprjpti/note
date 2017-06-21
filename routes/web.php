@@ -12,12 +12,12 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::group(['prefix' => 'admin','middleware'=> ['auth','checkuser','web']], function(){
 	Route::get('/',function(){
-		return view('admin.layout.main');})->name('admin.index');
+		return view('admin.dashboard');})->name('admin.index');
 	Route::resource('note','admin\NotesController');
 	Route::post('note/delete', 'admin\NotesController@delete')->name('note.delete');
 	Route::resource('subject','admin\SubjectController');
-	Route::resource('semester','admin\SemesterController');
 	Route::resource('faculty', 'admin\FacultyController');
+	Route::get('faculty/search', 'admin\FacultyController@search')->name('faculty.search');
 	
 
 	Route::group(['prefix' => 'member','middleware'=>['admin']], function(){

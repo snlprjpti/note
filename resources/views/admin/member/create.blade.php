@@ -1,9 +1,9 @@
 @extends('admin.layout.main')
-@section('title','Admin-Member')
+@section('title','Member')
 @section('content')
 
 	<div class="row">
-		<div class="col-md-5 col-md-offset-3">
+		<div class="col-md-5 col-md-offset-3 ">
 			{!! Form::open(['route' => 'member.store','method'=>'post']) !!}
 
 			<div class="form-group">

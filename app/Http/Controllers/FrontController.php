@@ -14,7 +14,7 @@ class FrontController extends Controller
     	$notes = Note::all();
     	$faculties = Faculty::all();
         $subjects = Subject::all();
-    	return view('front.index',compact('notes','faculties','subjects'));
+    	return view('front.index', compact('notes','faculties','subjects'));
     }
 
     public function about()

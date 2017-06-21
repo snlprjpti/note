@@ -21,4 +21,12 @@ class FacultyRepository
 		return true;
 	}
 
+	public function delete($id)
+	{
+		$faculty = $this->faculty->find($id);
+		$faculty->delete();
+		return true;
+
+	}
+
 }

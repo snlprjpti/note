@@ -1,46 +1,93 @@
 @extends('admin.layout.main')
-@section('content')
-<div class="navbar">
-  <a class="navbar-brand" href="#">subjects:</a>
-    <ul class="nav navbar-nav">
-  		@if(!empty($subjects))
-	   		@forelse($subjects as $subject)
-	   		<li>
-	   		<a href="{{route('subject.show',$subject->id)}}">{{$subject->name}}</a>
-	   		</li>
-	   			@empty
-	   			<li>No Data</li>
-	   		@endforelse
-   		@endif    
-      </a>
-    </ul>
- 		<a href="#modal-id" class="btn btn-primary" data-toggle="modal">Add Subject</a>
-    	<div class="modal fade" tabindex="-1" id="modal-id" role="dialog">
-		  <div class="modal-dialog" role="document">
-		  {!!Form::open(['route' => 'subject.store', 'method' => 'post'])!!}
-
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">Add Subject</h4>
-		      </div>
-		      <div class="modal-body">
-		       	<div class="form-group">
-		       		{{ Form::label('name',('Name'))}}
-		       		{{ Form::text('name', null, array('class' => 'form-control'))}}
-		       	</div>
-		       	 	<div class="form-group">
-				{{Form::label('faculty_id','Faculty')}}
-				{{Form::select('faculty_id',$faculties, null, array('class' => 'form-control'))}}
-			</div>	
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="submit" class="btn btn-primary">Save changes</button>
-		      </div>
-		    </div><!-- /.modal-content -->
-		    {!!Form::close()!!}
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-	</div>  	   		
+@section('title','Subject')
+@section('breadcrumb')
+	<ol class="breadcrumb">
+        <li><a href="/admin"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Subject</li>
+     </ol>
 @endsection
+@section('content')
+
+	<div class="row">
+  		<div class="col-md-8 ">
+  			@if(Session::has('error'))
+			<div id="messages"  class="alert alert-danger" role="alert">
+				<strong>{{Session::get('error')}}</strong>
+			</div>
+		@endif
+		@if(Session::has('delete'))
+			<div  id="messages" class="alert alert-info" role="alert">
+				<strong>{{Session::get('delete')}}</strong>
+			</div>
+		@endif
+		</div>
+	</div>
+			<div class="row">
+				<div class="col-md-8 content-table">
+					
+			<table id="datatable" class="table table-responsive">
+				<thead>
+					<tr>
+						<td>SN</td>
+						<td>Faculty</td>
+						<td>Grade</td>
+						<td>Subject Name</td>
+						<td>Action</td>
+						<td></td>
+					</tr>
+				</thead>
+				<?php $i = 1; ?>
+				@forelse($subjects as $subject)
+				<tbody>
+					<tr>
+						<td>{{$i}}</td>
+						<td>{{$subject->faculty->name}}</td>
+						<td>{{$subject->grade}}</td>
+						<td>{{$subject->name}}</td>
+						<td>
+							<a class="btn-lg" href="{{route('subject.edit', $subject->id)}}"><i class="fa fa-edit"></i></a>
+						</td>
+						<td>		
+							<form method="post" action="{{route('subject.destroy',$subject->id)}}">
+								<button class="btn-danger" type="submit"><i class="fa fa-trash"></i></button>
+								{{csrf_field()}}
+							{{method_field('DELETE')}}
+							</form>
+
+						</td>
+					</tr>
+				</tbody>
+				<?php $i++; ?>
+					@empty<h4>No subjects</h4>
+				@endforelse
+			</table>	
+	  </div>
+	  @if(\Request::segment(4) == 'edit')
+	  	@include('admin.subject.edit')
+	  @else
+	  	@include('admin.subject.create')
+	  @endif	
+	  	
+@endsection
+
+	@section('js')
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#semester').click(function(){
+					$('#s').show();
+					$('#y').hide();				
+				});
+				$('#year').click(function(){
+					$('#s').hide();
+					$('#y').show();	
+				});
+			});
+
+			
+        $(document).ready(function() {
+			    $('#datatable').DataTable();
+			});
+
+
+</script>
+	@endsection	

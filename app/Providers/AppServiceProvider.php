@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Note;
 use App\User;
+use App\Faculty;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -18,12 +19,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-         $notes = Note::all();
+        $notes = Note::all();
         View::share('notes', $notes);  
 
         $users = User::all();
         View::share('users', $users);
-
 
     }
     /**

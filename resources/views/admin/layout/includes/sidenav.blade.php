@@ -7,7 +7,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
         </div>
         <div class="pull-left info">
           <p>{{Auth::user()->name  }}</p>
@@ -36,11 +36,10 @@
         <li><a href="{{route('member.index')}}"><i class="fa fa-child"></i> <span>Member</span></a></li>
         @endif
        
-          <li><a href="{{route('note.index')}}"><i class="fa fa-edit text-red"></i> <span>Notes</span></a></li>
+          <li><a href="{{route('note.index')}}"><i class="fa fa-edit"></i> <span>Notes</span></a></li>
 
           
-        <li><a href="{{route('subject.index')}}"><i class="fa fa-laptop "></i> <span>Subject</span></a></li>
-        <li><a href="{{route('semester.index')}}"><i class="fa fa-laptop "></i> <span>Semester</span></a></li>
+        <li><a href="{{route('subject.index')}}"><i class="fa fa-book "></i> <span>Subject</span></a></li>
         <li><a href="{{route('faculty.index')}}"><i class="fa fa-laptop "></i> <span>faculty</span></a></li>
 
       <!--    <li class="treeview">

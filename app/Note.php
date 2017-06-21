@@ -2,13 +2,14 @@
 
 namespace App;
 use App\Subject;
+use App\Faculty;
 use App\User;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
-    protected $fillable = ['name','description','file','subject_id','user_id'];
+    protected $fillable = ['name','file','subject_id','faculty_id','user_id'];
 
     public function subject()
     {
@@ -18,5 +19,10 @@ class Note extends Model
     public function user()
  	{
  		return $this->belongsTo(User::class);
+ 	}
+ 	
+ 	  public function faculty()
+ 	{
+ 		return $this->belongsTo(Faculty::class);
  	}
 }

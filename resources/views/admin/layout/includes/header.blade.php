@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>@yield('title')</title>
+  <title>Admin-@yield('title')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -15,9 +15,31 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('back/assets/css/AdminLTE.min.css')}}">
+  
+  <link rel="stylesheet" type="text/css" href="{{asset('datatable/media/css/jquery.dataTables.css')}}">
  
   <link rel="stylesheet" href="{{asset('back/assets/css/skin-blue.min.css')}}">
   <link rel="stylesheet" href="{{asset('back/assets/css/style.css')}}">
+  <!-- for fav icons -->
+  <link rel="apple-touch-icon" sizes="57x57" href="{{asset('back/assets/css/favicon/apple-icon-57x57.png')}}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{{asset('back/assets/css/favicon/apple-icon-60x60.png')}}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{asset('back/assets/css/favicon/apple-icon-72x72.png')}}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{asset('back/assets/css/favicon/apple-icon-76x76.png')}}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{asset('back/assets/css/favicon/apple-icon-114x114.png')}}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{asset('back/assets/css/favicon/apple-icon-120x120.png')}}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{{asset('back/assets/css/favicon/apple-icon-144x144.png')}}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{asset('back/assets/css/favicon/apple-icon-152x152.png')}}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{asset('back/assets/css/favicon/apple-icon-180x180.png')}}">
+  <link rel="icon" type="image/png" sizes="192x192"  href="{{asset('back/assets/css/favicon/android-icon-192x192.png')}}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{asset('back/assets/css/favicon/favicon-32x32.png')}}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{asset('back/assets/css/favicon/favicon-96x96.png')}}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{asset('back/assets/css/favicon/favicon-16x16.png')}}">
+  <link rel="manifest" href="{{asset('back/assets/css/favicon/manifest.json')}}">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+<!-- favicon ends here -->
+  
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -59,7 +81,7 @@
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -141,11 +163,11 @@
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
-            <button class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{{Auth::user()->name}}</span>
+              <span class="hidden-xs">{{Auth::user()->name}}</span></a>
             </button>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->

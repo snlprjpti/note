@@ -33,7 +33,9 @@ class NotesController extends Controller
     {   
         $faculties = Faculty::pluck('name','id');
         $subjects = Subject::pluck('name','id');
-        return view('admin.note.index', compact('faculties','subjects'));
+        $user = \Auth::user();
+        $notes = Note::orderBy('id','DESC')->get();
+        return view('admin.note.index', compact('faculties','notes','subjects','user'));
     }
 
     /**
@@ -51,10 +53,12 @@ class NotesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NoteRequest $request)
     {
-        $notes = $request->all();      
+        $notes = $request->all(); 
         $files = $request->file;
+        // $user = \Auth::user();
+        // $request->use_id = $user->name;
         if(!empty($files))
         {
             foreach($files as $file):
@@ -88,7 +92,15 @@ class NotesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $note_edit = Note::find($id);
+        // return $note_edit;  
+        $faculties = Faculty::pluck('name','id');
+
+        $subjects = Subject::pluck('name','id');
+
+        $notes = Note::all();
+
+        return view('admin.note.index', compact('note_edit','notes','faculties','subjects'));
     }
 
     /**
@@ -117,6 +129,6 @@ class NotesController extends Controller
                 $id->delete();
                 @unlink(public_path().'/back/files/'.$id->file);
              endforeach;
-            return back();
+        return back();
     }   
 }

@@ -13,7 +13,7 @@ class SubjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class SubjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'faculty_id' => 'required',
         ];
     }
 }

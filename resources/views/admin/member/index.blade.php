@@ -1,5 +1,5 @@
 @extends('admin.layout.main')
-@section('title','Admin-Member')
+@section('title','Member')
 @section('content')
 	<a href="{{route('member.create')}}" class="add-user user" style="text-decoration: none;">Add User</a>
 	<table class="table table-hover">
@@ -37,7 +37,7 @@
 				
 				<td>@if(Auth::user()->id != $member->id)
 					
-					<button onclick="edit({{json_encode($member)}})" class="btn-info" data-toggle="modal" value="{{$member->id}}" data-target="#Edit-member" id="edit">{{$member->id}}</button>
+					<button onclick="edit({{json_encode($member)}})" class="btn-info" data-toggle="modal" value="{{$member->id}}" data-target="#Edit-member" id="edit">Edit</button>
 					
 				<div class="modal fade" id="Edit-member" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;" >
 				  	<div class="modal-dialog">
